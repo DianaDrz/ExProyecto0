@@ -110,19 +110,6 @@ function degreesToRadians(degrees) {
 }
 function inicializaCubo() {
 
-          /**
-           *       3 --------- 2
-           *       /|        /|   
-           *      / |       / |
-           *    7 --------- 6 |
-           *     |  |      |  |
-           *     | 0 ------|-- 1 
-           *     | /       | /
-           *     |/        |/
-           *    4 --------- 5  
-           */
-
-          /* Las coordenadas cartesianas (x, y) */
           var vertices = [
              // Frente
              -1, -1,  1, // 4   0
@@ -310,6 +297,404 @@ function inicializaCubo() {
           requestAnimationFrame(dibuja);
 
         }
+
+//OBJETOS DE NUESTRA ESCENA
+function pisar(ancho, grosor, x, z) {
+    let tarimaGeo = new THREE.BoxGeometry(ancho, 16, grosor);
+    let tarimaMat = new THREE.MeshPhongMaterial({ color: 0x34080A, });
+    let tarima = new THREE.Mesh(tarimaGeo, tarimaMat);
+    tarima.position.x = x
+    tarima.position.z = z
+    tarima.position.y = 16 / 2
+    scene.add(tarima)
+    colisionObjetos.push(tarima);
+
+}
+function pisomadera() {
+    pisar(30, 20 * 8, 240, -170)//labo
+    pisar(20, 20 * 8, -93, -170)//lab basico
+    pisar(20, 20 * 8, -93, 125)//lab basico
+}
+
+
+function pizarras() {
+    let texture = new THREE.TextureLoader().load('img/im1.jpg');
+    let mat = new THREE.MeshPhongMaterial({ map: texture });
+    let geo = new THREE.BoxGeometry(3, 25, 60 * 2);
+
+    let p1 = new THREE.Mesh(geo, mat);
+    p1.position.set(-80, 35, -170);
+    scene.add(p1)
+    let p2 = new THREE.Mesh(geo, mat);
+    p2.position.set(-80, 35, 125);
+    scene.add(p2)
+    let p3 = new THREE.Mesh(geo, mat);
+    p3.position.set(240, 35, -170);
+    scene.add(p3)
+}
+
+function mesas() {
+    let texture = new THREE.TextureLoader().load('img/im7.jpg');
+    let mat = new THREE.MeshPhongMaterial({ map: texture });
+    let geo = new THREE.BoxGeometry(20, 25, 40 * 2);
+    //mesas lado izquierdo
+    let p1 = new THREE.Mesh(geo, mat);
+    p1.position.set(-180, 6, 190);
+    scene.add(p1)
+    colisionObjetos.push(p1);
+    let p2 = new THREE.Mesh(geo, mat);
+    p2.position.set(-230, 6, 190);
+    scene.add(p2)
+    colisionObjetos.push(p2);
+    let p3 = new THREE.Mesh(geo, mat);
+    p3.position.set(-280, 6, 190);
+    scene.add(p3)
+    colisionObjetos.push(p3);
+    let p4 = new THREE.Mesh(geo, mat);
+    p4.position.set(-330, 6, 190);
+    scene.add(p4)
+    colisionObjetos.push(p4);
+    //mesas de medio
+    let p5 = new THREE.Mesh(geo, mat);
+    p5.position.set(-180, 6, 60);
+    scene.add(p5)
+    colisionObjetos.push(p5);
+    let p6 = new THREE.Mesh(geo, mat);
+    p6.position.set(-230, 6, 60);
+    scene.add(p6)
+    colisionObjetos.push(p6);
+    let p7 = new THREE.Mesh(geo, mat);
+    p7.position.set(-280, 6, 60);
+    scene.add(p7)
+    colisionObjetos.push(p7);
+    let p8 = new THREE.Mesh(geo, mat);
+    p8.position.set(-330, 6, 60);
+    scene.add(p8)
+    colisionObjetos.push(p8);
+    //mesas lado derecho
+    let p9 = new THREE.Mesh(geo, mat);
+    p9.position.set(-180, 6, -240);
+    scene.add(p9)
+    colisionObjetos.push(p9);
+    let p10 = new THREE.Mesh(geo, mat);
+    p10.position.set(-230, 6, -240);
+    scene.add(p10)
+    colisionObjetos.push(p10);
+    let p11 = new THREE.Mesh(geo, mat);
+    p11.position.set(-280, 6, -240);
+    scene.add(p11)
+    colisionObjetos.push(p11);
+    let p12 = new THREE.Mesh(geo, mat);
+    p12.position.set(-330, 6, -240);
+    scene.add(p12)
+    colisionObjetos.push(p12);
+    //mesas de medio
+    let p14 = new THREE.Mesh(geo, mat);
+    p14.position.set(-180, 6, -110);
+    scene.add(p14)
+    colisionObjetos.push(p14);
+    let p15 = new THREE.Mesh(geo, mat);
+    p15.position.set(-230, 6, -110);
+    scene.add(p15)
+    colisionObjetos.push(p15);
+    let p16 = new THREE.Mesh(geo, mat);
+    p16.position.set(-280, 6, -110);
+    scene.add(p16)
+    colisionObjetos.push(p16);
+    let p17 = new THREE.Mesh(geo, mat);
+    p17.position.set(-330, 6, -110);
+    scene.add(p17)
+    colisionObjetos.push(p17);
+
+    let p18 = new THREE.Mesh(geo, mat);
+    p18.position.set(-30, 6, 210);
+    scene.add(p18)
+    colisionObjetos.push(p18);
+    
+}
+function monitor() {
+    let texture = new THREE.TextureLoader().load('img/im13.jpg');
+    let mat = new THREE.MeshPhongMaterial({ map: texture });
+    let geo = new THREE.BoxGeometry(1, 10, 9 * 2);
+    //mesas lado izquierdo
+    let p1 = new THREE.Mesh(geo, mat);
+    p1.position.set(-180, 25, 210);
+    scene.add(p1)
+    let p2 = new THREE.Mesh(geo, mat);
+    p2.position.set(-230, 25, 210);
+    scene.add(p2)
+    let p3 = new THREE.Mesh(geo, mat);
+    p3.position.set(-280, 25, 210);
+    scene.add(p3)
+    let p4 = new THREE.Mesh(geo, mat);
+    p4.position.set(-330, 25, 210);
+    scene.add(p4)
+
+    let p31 = new THREE.Mesh(geo, mat);
+    p31.position.set(-180, 25, 165);
+    scene.add(p31)
+    let p32 = new THREE.Mesh(geo, mat);
+    p32.position.set(-230, 25, 165);
+    scene.add(p32)
+    let p33 = new THREE.Mesh(geo, mat);
+    p33.position.set(-280, 25, 165);
+    scene.add(p33)
+    let p34 = new THREE.Mesh(geo, mat);
+    p34.position.set(-330, 25, 165);
+    scene.add(p34)
+    //mesas de medio
+    let p5 = new THREE.Mesh(geo, mat);
+    p5.position.set(-180, 25, 80);
+    scene.add(p5)
+    let p6 = new THREE.Mesh(geo, mat);
+    p6.position.set(-230, 25, 80);
+    scene.add(p6)
+    let p7 = new THREE.Mesh(geo, mat);
+    p7.position.set(-280, 25, 80);
+    scene.add(p7)
+    let p8 = new THREE.Mesh(geo, mat);
+    p8.position.set(-330, 25, 80);
+    scene.add(p8)
+
+    let p45 = new THREE.Mesh(geo, mat);
+    p45.position.set(-180, 25, 45);
+    scene.add(p45)
+    let p46 = new THREE.Mesh(geo, mat);
+    p46.position.set(-230, 25, 45);
+    scene.add(p46)
+    let p47 = new THREE.Mesh(geo, mat);
+    p47.position.set(-280, 25, 45);
+    scene.add(p47)
+    let p48 = new THREE.Mesh(geo, mat);
+    p48.position.set(-330, 25, 45);
+    scene.add(p48)
+    //mesas lado derecho
+    let p9 = new THREE.Mesh(geo, mat);
+    p9.position.set(-180, 25, -250);
+    scene.add(p9)
+    let p10 = new THREE.Mesh(geo, mat);
+    p10.position.set(-230, 25, -250);
+    scene.add(p10)
+    let p11 = new THREE.Mesh(geo, mat);
+    p11.position.set(-280, 25, -250);
+    scene.add(p11)
+    let p12 = new THREE.Mesh(geo, mat);
+    p12.position.set(-330, 25, -250);
+    scene.add(p12)
+
+    let p49 = new THREE.Mesh(geo, mat);
+    p49.position.set(-180, 25, -210);
+    scene.add(p49)
+    let p50 = new THREE.Mesh(geo, mat);
+    p50.position.set(-230, 25, -210);
+    scene.add(p50)
+    let p51 = new THREE.Mesh(geo, mat);
+    p51.position.set(-280, 25, -210);
+    scene.add(p51)
+    let p52 = new THREE.Mesh(geo, mat);
+    p52.position.set(-330, 25, -220);
+    scene.add(p52)
+    //mesas de medio
+    let p14 = new THREE.Mesh(geo, mat);
+    p14.position.set(-180, 25, -130);
+    scene.add(p14)
+    let p15 = new THREE.Mesh(geo, mat);
+    p15.position.set(-230, 25, -130);
+    scene.add(p15)
+    let p16 = new THREE.Mesh(geo, mat);
+    p16.position.set(-280, 25, -130);
+    scene.add(p16)
+    let p17 = new THREE.Mesh(geo, mat);
+    p17.position.set(-330, 25, -130);
+    scene.add(p17)
+
+    let p64 = new THREE.Mesh(geo, mat);
+    p64.position.set(-180, 25, -90);
+    scene.add(p64)
+    let p65 = new THREE.Mesh(geo, mat);
+    p65.position.set(-230, 25, -90);
+    scene.add(p65)
+    let p66 = new THREE.Mesh(geo, mat);
+    p66.position.set(-280, 25, -90);
+    scene.add(p66)
+    let p67 = new THREE.Mesh(geo, mat);
+    p67.position.set(-330, 25, -90);
+    scene.add(p67)
+
+     let p97 = new THREE.Mesh(geo, mat);
+    p97.position.set(-30, 25, 190);
+    scene.add(p97) 
+}
+function mesasOficina() {
+    let texture = new THREE.TextureLoader().load('img/im10.jpg');
+    let mat = new THREE.MeshPhongMaterial({ map: texture });
+    let geo = new THREE.BoxGeometry(30, 25, 15 * 2);
+    //mesas lado izquierdo
+    
+    let p2 = new THREE.Mesh(geo, mat);
+    p2.position.set(64, 6, 114);
+    scene.add(p2)
+    colisionObjetos.push(p2);
+  
+}
+function monitorOf() {
+    let texture = new THREE.TextureLoader().load('img/im13.jpg');
+    let mat = new THREE.MeshPhongMaterial({ map: texture });
+    let geo = new THREE.BoxGeometry(15, 10, 1 * 2);
+    //mesas lado izquierdo
+    let p1 = new THREE.Mesh(geo, mat);
+    p1.position.set(-20, 25, 90);
+    scene.add(p1)
+    let p2 = new THREE.Mesh(geo, mat);
+    p2.position.set(50, 25, 200);
+    scene.add(p2)
+    let p3 = new THREE.Mesh(geo, mat);
+    p3.position.set(65, 25, 110);
+    scene.add(p3)
+  }
+  
+  function sillaOfi(ancho, grosor, x, z) {
+   let texture = new THREE.TextureLoader().load('img/im14.jpg');
+    let mat = new THREE.MeshPhongMaterial({ map: texture });
+    let geo = new THREE.BoxGeometry(ancho, 28, grosor);
+
+    let puerta = new THREE.Mesh(geo, mat);
+    puerta.position.x = x
+    puerta.position.z = z
+    puerta.position.y = 28/2
+    scene.add(puerta)
+    return puerta;
+}
+function sillaOf() {
+    //Puertas labo basico
+    sillaOfi(20, 5, -20, 100);
+    sillaOfi(20, 5, 55, 230);
+    sillaOfi(5, 20, -40, 210);
+    
+}
+function mesasOficina2() {
+    let texture = new THREE.TextureLoader().load('img/im10.jpg');
+    let mat = new THREE.MeshPhongMaterial({ map: texture });
+    let geo = new THREE.BoxGeometry(20, 25, 40 * 2);
+    let p1 = new THREE.Mesh(geo, mat);
+    p1.position.set(160, 6, 150);
+    scene.add(p1)
+    colisionObjetos.push(p1);
+}
+function mesasOf() {
+    let texture = new THREE.TextureLoader().load('img/im10.jpg');
+    let mat = new THREE.MeshPhongMaterial({ map: texture });
+    let geo = new THREE.BoxGeometry(60, 25, 5 * 2);
+    let p1 = new THREE.Mesh(geo, mat);
+    p1.position.set(50, 6, 200);
+    scene.add(p1)
+    colisionObjetos.push(p1);
+    let p2 = new THREE.Mesh(geo, mat);
+    p2.position.set(-20, 6, 90);
+    scene.add(p2)
+    colisionObjetos.push(p2);
+    
+}
+
+function mesaslbo() {
+    let texture = new THREE.TextureLoader().load('img/im10.jpg');
+    let mat = new THREE.MeshPhongMaterial({ map: texture });
+    let geo = new THREE.BoxGeometry(90, 25, 15 * 2);
+    let p3 = new THREE.Mesh(geo, mat);
+    p3.position.set(-300, 6, -20);
+    scene.add(p3)
+    colisionObjetos.push(p3);
+}
+
+function librero(ancho, grosor, x, z) {
+   let texture = new THREE.TextureLoader().load('img/im11.jpg');
+    let mat = new THREE.MeshPhongMaterial({ map: texture });
+    let geo = new THREE.BoxGeometry(ancho, 50, grosor);
+
+    let puerta = new THREE.Mesh(geo, mat);
+    puerta.position.x = x
+    puerta.position.z = z
+    puerta.position.y = 50 / 2
+    scene.add(puerta)
+    colisionObjetos.push(puerta);
+    return puerta;
+}
+function libreros() {
+    //Puertas labo basico
+    librero(5, 60, -55, 220);
+    librero(5, 40, 75, 240);
+    librero(5, 60, -55, 90);
+    //Puertas labo oficiona y labo
+
+    //Puertas labo basico
+    //librero(5, 20, 189, 200);
+}
+function puerta(ancho, grosor, x, z) {
+    let texture = new THREE.TextureLoader().load('img/im2.jpg');
+    let mat = new THREE.MeshPhongMaterial({ map: texture });
+    let geo = new THREE.BoxGeometry(ancho, 50, grosor);
+
+    let puerta = new THREE.Mesh(geo, mat);
+    puerta.position.x = x
+    puerta.position.z = z
+    puerta.position.y = 50 / 2
+    scene.add(puerta)
+    colisionObjetos.push(puerta);
+    return puerta;
+    
+}
+
+function puerta2(ancho, grosor, x, z) {
+    let texture = new THREE.TextureLoader().load('img/im4.jpg');
+    let mat = new THREE.MeshPhongMaterial({ map: texture });
+    let geo = new THREE.BoxGeometry(ancho, 50, grosor);
+
+    let puerta = new THREE.Mesh(geo, mat);
+    puerta.position.x = x
+    puerta.position.z = z
+    puerta.position.y = 50 / 2
+    scene.add(puerta)
+    colisionObjetos.push(puerta);
+    return puerta;
+}
+function puerta3(ancho, grosor, x, z) {
+    let texture = new THREE.TextureLoader().load('img/im5.jpg');
+    let mat = new THREE.MeshPhongMaterial({ map: texture });
+    let geo = new THREE.BoxGeometry(ancho, 50, grosor);
+
+    let puerta = new THREE.Mesh(geo, mat);
+    puerta.position.x = x
+    puerta.position.z = z
+    puerta.position.y = 50 / 2
+    scene.add(puerta)
+    colisionObjetos.push(puerta);
+    return puerta;
+}
+function puerta4(ancho, grosor, x, z) {
+    let texture = new THREE.TextureLoader().load('img/im6.jpg');
+    let mat = new THREE.MeshPhongMaterial({ map: texture });
+    let geo = new THREE.BoxGeometry(ancho, 50, grosor);
+
+    let puerta = new THREE.Mesh(geo, mat);
+    puerta.position.x = x
+    puerta.position.z = z
+    puerta.position.y = 50 / 2
+    scene.add(puerta)
+    colisionObjetos.push(puerta);
+    return puerta;
+}
+function puertas() {
+    //Puertas labo basico
+    puerta3(2, 20, -100, -10);
+    puerta(20, 2, -110, -40);
+    //Puertas labo oficiona y labo
+
+    //Puertas labo basico
+    puerta4(4, 35, 220, -73);
+    puerta2(4, 35, 80, 20);
+    puerta(4, 35, 40, 150);
+    puerta2(35, 4, 100, 80);
+}
 function plano() {
     const ancho = 20;const alto = 20;
     const mapa = [
@@ -360,14 +745,14 @@ function plano() {
     var paredMat1 = new THREE.MeshPhongMaterial({color: 0x948F5D,});
     var paredMat2 = new THREE.MeshPhongMaterial({color: 0xF1E13F,});
     var pisoMaderaGeo = new THREE.BoxGeometry(ancho, 2, ancho);
-    var texturemadera = new THREE.TextureLoader().load('im3.jpg');
+    var texturemadera = new THREE.TextureLoader().load('img/im3.jpg');
     var pisoMaderaMat = new THREE.MeshPhongMaterial({ map: texturemadera });
     var c1 = new THREE.BoxGeometry(ancho, alto * 3, ancho);
     var c2 = new THREE.MeshPhongMaterial({
         color: 0xF1E13F,
     });
     var pisoaulaGeo = new THREE.BoxGeometry(ancho, 2, ancho);
-    var textureaula = new THREE.TextureLoader().load('im3.jpg');
+    var textureaula = new THREE.TextureLoader().load('img/im3.jpg');
     var pisoaulaMat = new THREE.MeshPhongMaterial({ map: textureaula });
 
     const mapaFila = mapa.length;
@@ -442,7 +827,6 @@ function plano() {
 
         }
     }
-    // console.log(colisionObjetos.length)
 }
 // MOVIMIENTO CON TECLADO DE LA PERSONA 
 //Movimietos
@@ -563,407 +947,7 @@ function animate() {
     var delta = clock.getDelta();
     animatePersonaje(delta);
 }
-/*
-*************************************************************************************************
- * agregando objetos
-/************************************************************************************************
-*/
-function pisar(ancho, grosor, x, z) {
-    let tarimaGeo = new THREE.BoxGeometry(ancho, 16, grosor);
-    let tarimaMat = new THREE.MeshPhongMaterial({ color: 0x784212, });
-    let tarima = new THREE.Mesh(tarimaGeo, tarimaMat);
-    tarima.position.x = x
-    tarima.position.z = z
-    tarima.position.y = 16 / 2
-    scene.add(tarima)
-    colisionObjetos.push(tarima);
 
-}
-function pisomadera() {
-    pisar(30, 20 * 8, 240, -170)//labo
-    pisar(20, 20 * 8, -93, -170)//lab basico
-    pisar(20, 20 * 8, -93, 125)//lab basico
-}
-
-
-function pizarras() {
-    let texture = new THREE.TextureLoader().load('im1.jpg');
-    let mat = new THREE.MeshPhongMaterial({ map: texture });
-    let geo = new THREE.BoxGeometry(3, 25, 60 * 2);
-
-    let p1 = new THREE.Mesh(geo, mat);
-    p1.position.set(-80, 35, -170);
-    scene.add(p1)
-    let p2 = new THREE.Mesh(geo, mat);
-    p2.position.set(-80, 35, 125);
-    scene.add(p2)
-    let p3 = new THREE.Mesh(geo, mat);
-    p3.position.set(240, 35, -170);
-    scene.add(p3)
-}
-
-function mesas() {
-    let texture = new THREE.TextureLoader().load('im7.jpg');
-    let mat = new THREE.MeshPhongMaterial({ map: texture });
-    let geo = new THREE.BoxGeometry(20, 25, 40 * 2);
-    //mesas lado izquierdo
-    let p1 = new THREE.Mesh(geo, mat);
-    p1.position.set(-180, 6, 190);
-    scene.add(p1)
-    colisionObjetos.push(p1);
-    let p2 = new THREE.Mesh(geo, mat);
-    p2.position.set(-230, 6, 190);
-    scene.add(p2)
-    colisionObjetos.push(p2);
-    let p3 = new THREE.Mesh(geo, mat);
-    p3.position.set(-280, 6, 190);
-    scene.add(p3)
-    colisionObjetos.push(p3);
-    let p4 = new THREE.Mesh(geo, mat);
-    p4.position.set(-330, 6, 190);
-    scene.add(p4)
-    colisionObjetos.push(p4);
-    //mesas de medio
-    let p5 = new THREE.Mesh(geo, mat);
-    p5.position.set(-180, 6, 60);
-    scene.add(p5)
-    colisionObjetos.push(p5);
-    let p6 = new THREE.Mesh(geo, mat);
-    p6.position.set(-230, 6, 60);
-    scene.add(p6)
-    colisionObjetos.push(p6);
-    let p7 = new THREE.Mesh(geo, mat);
-    p7.position.set(-280, 6, 60);
-    scene.add(p7)
-    colisionObjetos.push(p7);
-    let p8 = new THREE.Mesh(geo, mat);
-    p8.position.set(-330, 6, 60);
-    scene.add(p8)
-    colisionObjetos.push(p8);
-    //mesas lado derecho
-    let p9 = new THREE.Mesh(geo, mat);
-    p9.position.set(-180, 6, -240);
-    scene.add(p9)
-    colisionObjetos.push(p9);
-    let p10 = new THREE.Mesh(geo, mat);
-    p10.position.set(-230, 6, -240);
-    scene.add(p10)
-    colisionObjetos.push(p10);
-    let p11 = new THREE.Mesh(geo, mat);
-    p11.position.set(-280, 6, -240);
-    scene.add(p11)
-    colisionObjetos.push(p11);
-    let p12 = new THREE.Mesh(geo, mat);
-    p12.position.set(-330, 6, -240);
-    scene.add(p12)
-    colisionObjetos.push(p12);
-    //mesas de medio
-    let p14 = new THREE.Mesh(geo, mat);
-    p14.position.set(-180, 6, -110);
-    scene.add(p14)
-    colisionObjetos.push(p14);
-    let p15 = new THREE.Mesh(geo, mat);
-    p15.position.set(-230, 6, -110);
-    scene.add(p15)
-    colisionObjetos.push(p15);
-    let p16 = new THREE.Mesh(geo, mat);
-    p16.position.set(-280, 6, -110);
-    scene.add(p16)
-    colisionObjetos.push(p16);
-    let p17 = new THREE.Mesh(geo, mat);
-    p17.position.set(-330, 6, -110);
-    scene.add(p17)
-    colisionObjetos.push(p17);
-
-    let p18 = new THREE.Mesh(geo, mat);
-    p18.position.set(-30, 6, 210);
-    scene.add(p18)
-    colisionObjetos.push(p18);
-    
-}
-function monitor() {
-    let texture = new THREE.TextureLoader().load('im13.jpg');
-    let mat = new THREE.MeshPhongMaterial({ map: texture });
-    let geo = new THREE.BoxGeometry(1, 10, 9 * 2);
-    //mesas lado izquierdo
-    let p1 = new THREE.Mesh(geo, mat);
-    p1.position.set(-180, 25, 210);
-    scene.add(p1)
-    let p2 = new THREE.Mesh(geo, mat);
-    p2.position.set(-230, 25, 210);
-    scene.add(p2)
-    let p3 = new THREE.Mesh(geo, mat);
-    p3.position.set(-280, 25, 210);
-    scene.add(p3)
-    let p4 = new THREE.Mesh(geo, mat);
-    p4.position.set(-330, 25, 210);
-    scene.add(p4)
-
-    let p31 = new THREE.Mesh(geo, mat);
-    p31.position.set(-180, 25, 165);
-    scene.add(p31)
-    let p32 = new THREE.Mesh(geo, mat);
-    p32.position.set(-230, 25, 165);
-    scene.add(p32)
-    let p33 = new THREE.Mesh(geo, mat);
-    p33.position.set(-280, 25, 165);
-    scene.add(p33)
-    let p34 = new THREE.Mesh(geo, mat);
-    p34.position.set(-330, 25, 165);
-    scene.add(p34)
-    //mesas de medio
-    let p5 = new THREE.Mesh(geo, mat);
-    p5.position.set(-180, 25, 80);
-    scene.add(p5)
-    let p6 = new THREE.Mesh(geo, mat);
-    p6.position.set(-230, 25, 80);
-    scene.add(p6)
-    let p7 = new THREE.Mesh(geo, mat);
-    p7.position.set(-280, 25, 80);
-    scene.add(p7)
-    let p8 = new THREE.Mesh(geo, mat);
-    p8.position.set(-330, 25, 80);
-    scene.add(p8)
-
-    let p45 = new THREE.Mesh(geo, mat);
-    p45.position.set(-180, 25, 45);
-    scene.add(p45)
-    let p46 = new THREE.Mesh(geo, mat);
-    p46.position.set(-230, 25, 45);
-    scene.add(p46)
-    let p47 = new THREE.Mesh(geo, mat);
-    p47.position.set(-280, 25, 45);
-    scene.add(p47)
-    let p48 = new THREE.Mesh(geo, mat);
-    p48.position.set(-330, 25, 45);
-    scene.add(p48)
-    //mesas lado derecho
-    let p9 = new THREE.Mesh(geo, mat);
-    p9.position.set(-180, 25, -250);
-    scene.add(p9)
-    let p10 = new THREE.Mesh(geo, mat);
-    p10.position.set(-230, 25, -250);
-    scene.add(p10)
-    let p11 = new THREE.Mesh(geo, mat);
-    p11.position.set(-280, 25, -250);
-    scene.add(p11)
-    let p12 = new THREE.Mesh(geo, mat);
-    p12.position.set(-330, 25, -250);
-    scene.add(p12)
-
-    let p49 = new THREE.Mesh(geo, mat);
-    p49.position.set(-180, 25, -210);
-    scene.add(p49)
-    let p50 = new THREE.Mesh(geo, mat);
-    p50.position.set(-230, 25, -210);
-    scene.add(p50)
-    let p51 = new THREE.Mesh(geo, mat);
-    p51.position.set(-280, 25, -210);
-    scene.add(p51)
-    let p52 = new THREE.Mesh(geo, mat);
-    p52.position.set(-330, 25, -220);
-    scene.add(p52)
-    //mesas de medio
-    let p14 = new THREE.Mesh(geo, mat);
-    p14.position.set(-180, 25, -130);
-    scene.add(p14)
-    let p15 = new THREE.Mesh(geo, mat);
-    p15.position.set(-230, 25, -130);
-    scene.add(p15)
-    let p16 = new THREE.Mesh(geo, mat);
-    p16.position.set(-280, 25, -130);
-    scene.add(p16)
-    let p17 = new THREE.Mesh(geo, mat);
-    p17.position.set(-330, 25, -130);
-    scene.add(p17)
-
-    let p64 = new THREE.Mesh(geo, mat);
-    p64.position.set(-180, 25, -90);
-    scene.add(p64)
-    let p65 = new THREE.Mesh(geo, mat);
-    p65.position.set(-230, 25, -90);
-    scene.add(p65)
-    let p66 = new THREE.Mesh(geo, mat);
-    p66.position.set(-280, 25, -90);
-    scene.add(p66)
-    let p67 = new THREE.Mesh(geo, mat);
-    p67.position.set(-330, 25, -90);
-    scene.add(p67)
-
-     let p97 = new THREE.Mesh(geo, mat);
-    p97.position.set(-30, 25, 190);
-    scene.add(p97) 
-}
-function mesasOficina() {
-    let texture = new THREE.TextureLoader().load('im10.jpg');
-    let mat = new THREE.MeshPhongMaterial({ map: texture });
-    let geo = new THREE.BoxGeometry(30, 25, 15 * 2);
-    //mesas lado izquierdo
-    
-    let p2 = new THREE.Mesh(geo, mat);
-    p2.position.set(64, 6, 114);
-    scene.add(p2)
-    colisionObjetos.push(p2);
-  
-}
-function monitorOf() {
-    let texture = new THREE.TextureLoader().load('im13.jpg');
-    let mat = new THREE.MeshPhongMaterial({ map: texture });
-    let geo = new THREE.BoxGeometry(15, 10, 1 * 2);
-    //mesas lado izquierdo
-    let p1 = new THREE.Mesh(geo, mat);
-    p1.position.set(-20, 25, 90);
-    scene.add(p1)
-    let p2 = new THREE.Mesh(geo, mat);
-    p2.position.set(50, 25, 200);
-    scene.add(p2)
-    let p3 = new THREE.Mesh(geo, mat);
-    p3.position.set(65, 25, 110);
-    scene.add(p3)
-  }
-  
-  function sillaOfi(ancho, grosor, x, z) {
-   let texture = new THREE.TextureLoader().load('im14.jpg');
-    let mat = new THREE.MeshPhongMaterial({ map: texture });
-    let geo = new THREE.BoxGeometry(ancho, 28, grosor);
-
-    let puerta = new THREE.Mesh(geo, mat);
-    puerta.position.x = x
-    puerta.position.z = z
-    puerta.position.y = 28/2
-    scene.add(puerta)
-    return puerta;
-}
-function sillaOf() {
-    //Puertas labo basico
-    sillaOfi(20, 5, -20, 100);
-    sillaOfi(20, 5, 55, 230);
-    sillaOfi(5, 20, -40, 210);
-    
-}
-function mesasOficina2() {
-    let texture = new THREE.TextureLoader().load('im10.jpg');
-    let mat = new THREE.MeshPhongMaterial({ map: texture });
-    let geo = new THREE.BoxGeometry(20, 25, 40 * 2);
-    let p1 = new THREE.Mesh(geo, mat);
-    p1.position.set(160, 6, 150);
-    scene.add(p1)
-    colisionObjetos.push(p1);
-}
-function mesasOf() {
-    let texture = new THREE.TextureLoader().load('im10.jpg');
-    let mat = new THREE.MeshPhongMaterial({ map: texture });
-    let geo = new THREE.BoxGeometry(60, 25, 5 * 2);
-    let p1 = new THREE.Mesh(geo, mat);
-    p1.position.set(50, 6, 200);
-    scene.add(p1)
-    colisionObjetos.push(p1);
-    let p2 = new THREE.Mesh(geo, mat);
-    p2.position.set(-20, 6, 90);
-    scene.add(p2)
-    colisionObjetos.push(p2);
-    
-}
-
-function mesaslbo() {
-    let texture = new THREE.TextureLoader().load('im10.jpg');
-    let mat = new THREE.MeshPhongMaterial({ map: texture });
-    let geo = new THREE.BoxGeometry(90, 25, 15 * 2);
-    let p3 = new THREE.Mesh(geo, mat);
-    p3.position.set(-300, 6, -20);
-    scene.add(p3)
-    colisionObjetos.push(p3);
-}
-
-function librero(ancho, grosor, x, z) {
-   let texture = new THREE.TextureLoader().load('im11.jpg');
-    let mat = new THREE.MeshPhongMaterial({ map: texture });
-    let geo = new THREE.BoxGeometry(ancho, 50, grosor);
-
-    let puerta = new THREE.Mesh(geo, mat);
-    puerta.position.x = x
-    puerta.position.z = z
-    puerta.position.y = 50 / 2
-    scene.add(puerta)
-    colisionObjetos.push(puerta);
-    return puerta;
-}
-function libreros() {
-    //Puertas labo basico
-    librero(5, 60, -55, 220);
-    librero(5, 40, 75, 240);
-    librero(5, 60, -55, 90);
-    //Puertas labo oficiona y labo
-
-    //Puertas labo basico
-    //librero(5, 20, 189, 200);
-}
-function puerta(ancho, grosor, x, z) {
-    let texture = new THREE.TextureLoader().load('im2.jpg');
-    let mat = new THREE.MeshPhongMaterial({ map: texture });
-    let geo = new THREE.BoxGeometry(ancho, 50, grosor);
-
-    let puerta = new THREE.Mesh(geo, mat);
-    puerta.position.x = x
-    puerta.position.z = z
-    puerta.position.y = 50 / 2
-    scene.add(puerta)
-    colisionObjetos.push(puerta);
-    return puerta;
-    
-}
-
-function puerta2(ancho, grosor, x, z) {
-    let texture = new THREE.TextureLoader().load('im4.jpg');
-    let mat = new THREE.MeshPhongMaterial({ map: texture });
-    let geo = new THREE.BoxGeometry(ancho, 50, grosor);
-
-    let puerta = new THREE.Mesh(geo, mat);
-    puerta.position.x = x
-    puerta.position.z = z
-    puerta.position.y = 50 / 2
-    scene.add(puerta)
-    colisionObjetos.push(puerta);
-    return puerta;
-}
-function puerta3(ancho, grosor, x, z) {
-    let texture = new THREE.TextureLoader().load('im5.jpg');
-    let mat = new THREE.MeshPhongMaterial({ map: texture });
-    let geo = new THREE.BoxGeometry(ancho, 50, grosor);
-
-    let puerta = new THREE.Mesh(geo, mat);
-    puerta.position.x = x
-    puerta.position.z = z
-    puerta.position.y = 50 / 2
-    scene.add(puerta)
-    colisionObjetos.push(puerta);
-    return puerta;
-}
-function puerta4(ancho, grosor, x, z) {
-    let texture = new THREE.TextureLoader().load('im6.jpg');
-    let mat = new THREE.MeshPhongMaterial({ map: texture });
-    let geo = new THREE.BoxGeometry(ancho, 50, grosor);
-
-    let puerta = new THREE.Mesh(geo, mat);
-    puerta.position.x = x
-    puerta.position.z = z
-    puerta.position.y = 50 / 2
-    scene.add(puerta)
-    colisionObjetos.push(puerta);
-    return puerta;
-}
-function puertas() {
-    //Puertas labo basico
-    puerta3(2, 20, -100, -10);
-    puerta(20, 2, -110, -40);
-    //Puertas labo oficiona y labo
-
-    //Puertas labo basico
-    puerta4(4, 35, 220, -73);
-    puerta2(4, 35, 80, 20);
-    puerta(4, 35, 40, 150);
-    puerta2(35, 4, 100, 80);
-}
 
 
 function onWindowResize() {
