@@ -15,7 +15,7 @@ var bloqueo = document.getElementById('bloqueo');
 function init() {
     clock = new THREE.Clock();
     scene = new THREE.Scene();
-    scene.color = new THREE.Color(0xAED6F1);
+    scene.color = new THREE.Color(0xE5F5F0);
     // configuraciones de la renderizacion
     renderer = new THREE.WebGLRenderer();
     renderer.setClearColor(scene.color);
@@ -89,7 +89,7 @@ function luz() {
 }
 function pisoEscena() {
     var pisoGeo = new THREE.PlaneGeometry(46 * 20, 39 * 20);
-    var material2 = new THREE.MeshPhongMaterial({ color: 0xA0522D, side: THREE.DoubleSide });
+    var material2 = new THREE.MeshPhongMaterial({ color: 0xB4A4A4, side: THREE.DoubleSide });
     var piso = new THREE.Mesh(pisoGeo, material2);
     piso.material.side = THREE.DoubleSide;
     piso.position.set(0, 1, 0);
@@ -247,9 +247,6 @@ function inicializaCubo() {
 
         }
 
-        /***************************************************************************/
-        /* Paso 4: Se renderizan los objetos                                       */
-        /***************************************************************************/
         function dibujaCubo() {
 
           /* Se activa el objeto del arreglo de vértices */
@@ -742,7 +739,7 @@ function plano() {
 
     var paredGeoAltaVen = new THREE.BoxGeometry(ancho, alto / 2, ancho);
     
-    var paredMat1 = new THREE.MeshPhongMaterial({color: 0x948F5D,});
+    var paredMat1 = new THREE.MeshPhongMaterial({color: 0xF1E13F,});
     var paredMat2 = new THREE.MeshPhongMaterial({color: 0xF1E13F,});
     var pisoMaderaGeo = new THREE.BoxGeometry(ancho, 2, ancho);
     var texturemadera = new THREE.TextureLoader().load('img/im3.jpg');
